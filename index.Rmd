@@ -7,4 +7,25 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(viridis))
 ```
+
+Scatterplot of horsepower versus miles per gallon, grouping cars by number of cyclinders. Data taken from **mtcars** dataset. Plot created using **ggplot** library and **plotly's ggplotly()** function.
+
+```{r plot}
+
+data("mtcars")
+
+plot <- mtcars %>% 
+      ggplot() +
+      geom_point(aes(x = hp, y = mpg, col = factor(cyl))) +
+      scale_color_viridis(discrete = T) +
+      labs(x = "Horsepower",
+           y = "Miles per gallon",
+           col = "Cylinders")
+
+ggplotly(plot)
+```
+
