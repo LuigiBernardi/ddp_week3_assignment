@@ -1,0 +1,38 @@
+---
+title: "Coursera Developing Data Products - Week 3 Assignment"
+author: "Luigi Bernardi"
+date: "21/4/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(viridis))
+```
+
+## Assignment description
+
+- Scatterplot of horsepower versus miles per gallon, grouping cars by number of cyclinders.
+- Data taken from **mtcars** dataset.
+- Plot created using **ggplot** library and **plotly's ggplotly()** function.
+
+## Assignment plot
+
+```{r plot}
+
+data("mtcars")
+
+plot <- mtcars %>% 
+      ggplot() +
+      geom_point(aes(x = hp, y = mpg, col = factor(cyl))) +
+      scale_color_viridis(discrete = T) +
+      labs(x = "Horsepower",
+           y = "Miles per gallon",
+           col = "Cylinders")
+
+ggplotly(plot)
+
+```
+
